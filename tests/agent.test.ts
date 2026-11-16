@@ -52,6 +52,21 @@ test("ip mismatch alone triggers review", () => {
   assert.ok(result.ruleHits.some((h) => h.ruleId === "ip_mismatch"));
 });
 
+test("cross-border high amount triggers rule", () => {
+  const agent = new FraudAgent();
+  const result = agent.score(
+    baseTx({
+      foreignTransaction: true,
+      amount: 90000,
+      maxAmount24h: 10000,
+    })
+  );
+  assert.ok(
+    result.ruleHits.some((h) => h.ruleId === "cross_border_high_amount"),
+    "expected cross_border_high_amount rule to fire"
+  );
+});
+
 test("combined fraud signals block", () => {
   const agent = new FraudAgent();
   const result = agent.score(

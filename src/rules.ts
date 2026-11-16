@@ -93,6 +93,14 @@ export const RULES: Rule[] = [
     evaluate: (tx) =>
       tx.amount > 0 && (tx.amount % 1000 === 0 || tx.amount % 500 === 0),
   },
+  {
+    id: "cross_border_high_amount",
+    severity: "high",
+    weight: 0.55,
+    description: "Large amount on a cross-border transaction.",
+    evaluate: (tx) =>
+      tx.foreignTransaction && tx.amount > tx.maxAmount24h && tx.maxAmount24h > 0,
+  },
 ];
 
 export function evaluateRules(tx: Transaction): RuleHit[] {
