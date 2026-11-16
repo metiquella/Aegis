@@ -1,0 +1,9 @@
+{
+  "blockThreshold": 0.7,
+  "reviewThreshold": 0.4,
+  "targetFpr": 0.05,
+  "adaptationStep": 0.02,
+  "adaptationWindow": 500,
+  "maxThreshold": 0.95,
+  "minThreshold": 0.3
+}
