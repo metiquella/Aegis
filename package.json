@@ -1,0 +1,15 @@
+{
+  "name": "fraud-detection-agent",
+  "version": "1.0.0",
+  "description": "Real-time fraud detection agent that scores transactions, blocks/flags high-risk payments, and adapts to new fraud patterns.",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/api.ts",
+    "detect": "node --experimental-strip-types src/cli.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "train": "node --experimental-strip-types src/train.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
