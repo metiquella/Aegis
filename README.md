@@ -67,6 +67,9 @@ node --experimental-strip-types --test tests/*.test.ts
 
 Set `LOG_REQUESTS=1` to log per-request method, path, status, and latency.
 
+Set `AGENT_CONFIG` to a JSON file (see `agent.config.json`) to override the
+default thresholds without code changes.
+
 Example:
 
 ```bash
