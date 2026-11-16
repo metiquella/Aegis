@@ -63,6 +63,28 @@ export function createApp(agent: FraudAgent) {
         const httpStatus = scored.decision === "block" ? 200 : 200;
         return send(res, httpStatus, scored);
       }
+      if (method === "POST" && url.pathname === "/score/batch") {
+        const raw = await readBody(req);
+        let txs: Transaction[];
+        try {
+          const parsed = JSON.parse(raw);
+          txs = Array.isArray(parsed) ? parsed : parsed.transactions;
+        } catch {
+          return send(res, 400, { error: "invalid JSON body" });
+        }
+        if (!Array.isArray(txs) || txs.length === 0) {
+          return send(res, 400, {
+            error: "body must be a non-empty array of transactions",
+          });
+        }
+        const results = txs.map((tx) => {
+          if (!tx.id || typeof tx.amount !== "number") {
+            return { error: "missing required fields: id, amount", tx };
+          }
+          return agent.process(tx);
+        });
+        return send(res, 200, { count: results.length, results });
+      }
       return send(res, 404, { error: "not found" });
     } catch (err) {
       return send(res, 500, { error: (err as Error).message });
