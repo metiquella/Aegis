@@ -1,0 +1,21 @@
+{
+  "id": "txn_9f2a",
+  "timestamp": "2026-11-16T03:14:00Z",
+  "currency": "USD",
+  "amount": 240000,
+  "cardLast4": "4821",
+  "cardCountry": "US",
+  "ip": "203.0.113.42",
+  "ipCountry": "RU",
+  "mcc": "7995",
+  "merchantId": "M4471",
+  "billingCountry": "US",
+  "hourOfDay": 3,
+  "velocity24h": 14,
+  "velocity1h": 5,
+  "maxAmount24h": 8000,
+  "unusualAmount": true,
+  "foreignTransaction": true,
+  "ipMismatch": true,
+  "highRiskMerchant": true
+}
