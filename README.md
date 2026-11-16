@@ -60,9 +60,12 @@ node --experimental-strip-types --test tests/*.test.ts
 | Method | Path        | Description                                   |
 | ------ | ----------- | --------------------------------------------- |
 | POST   | `/score`    | Score one transaction, return decision + rules |
+| POST   | `/score/batch` | Score multiple transactions in one request |
 | GET    | `/metrics`  | Rolling metrics and current thresholds         |
 | POST   | `/reset`    | Reset running counters                         |
 | GET    | `/health`   | Liveness probe                                 |
+
+Set `LOG_REQUESTS=1` to log per-request method, path, status, and latency.
 
 Example:
 

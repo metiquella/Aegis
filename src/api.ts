@@ -36,6 +36,14 @@ export function createApp(agent: FraudAgent) {
   return createServer(async (req, res) => {
     const url = new URL(req.url ?? "/", "http://localhost");
     const method = req.method ?? "GET";
+    const started = Date.now();
+    if (process.env.LOG_REQUESTS === "1") {
+      res.on("finish", () => {
+        console.log(
+          `${method} ${url.pathname} ${res.statusCode} ${Date.now() - started}ms`
+        );
+      });
+    }
 
     try {
       if (method === "GET" && url.pathname === "/health") {
