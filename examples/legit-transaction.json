@@ -1,0 +1,21 @@
+{
+  "id": "txn_legit_1",
+  "timestamp": "2026-11-16T12:00:00Z",
+  "currency": "USD",
+  "amount": 1234,
+  "cardLast4": "1234",
+  "cardCountry": "US",
+  "ip": "10.0.0.1",
+  "ipCountry": "US",
+  "mcc": "5411",
+  "merchantId": "M1000",
+  "billingCountry": "US",
+  "hourOfDay": 12,
+  "velocity24h": 1,
+  "velocity1h": 1,
+  "maxAmount24h": 5000,
+  "unusualAmount": false,
+  "foreignTransaction": false,
+  "ipMismatch": false,
+  "highRiskMerchant": false
+}
