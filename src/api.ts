@@ -49,6 +49,9 @@ export function createApp(agent: FraudAgent) {
       if (method === "GET" && url.pathname === "/health") {
         return send(res, 200, { status: "ok" });
       }
+      if (method === "GET" && url.pathname === "/version") {
+        return send(res, 200, { name: "fraud-detection-agent", version: "1.0.0" });
+      }
       if (method === "GET" && url.pathname === "/metrics") {
         return send(res, 200, agent.getMetrics());
       }
