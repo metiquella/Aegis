@@ -24,8 +24,24 @@ function scoreOne(json: string) {
   }
 }
 
+const HELP = `Fraud Detection Agent CLI
+
+Usage:
+  cli.ts                     Run the training/evaluation report
+  cli.ts score '<json>'      Score a single transaction (JSON)
+  cli.ts help                Show this help
+
+Environment:
+  PORT          Port for the HTTP API (api.ts)
+  AGENT_CONFIG  Path to a JSON config file (api.ts)
+`;
+
 function main() {
   const arg = process.argv[2];
+  if (arg === "help" || arg === "--help" || arg === "-h") {
+    console.log(HELP);
+    return;
+  }
   if (arg === "score") {
     const json = process.argv.slice(3).join(" ");
     if (!json) {
