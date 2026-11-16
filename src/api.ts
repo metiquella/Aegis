@@ -118,5 +118,16 @@ const isMain =
   process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
 if (isMain) {
   const port = Number(process.env.PORT ?? 8080);
-  startServer({ port });
+  let config: Partial<AgentConfig> | undefined;
+  const configPath = process.env.AGENT_CONFIG;
+  if (configPath) {
+    try {
+      const { readFileSync } = await import("node:fs");
+      config = JSON.parse(readFileSync(configPath, "utf8")) as Partial<AgentConfig>;
+    } catch (err) {
+      console.error(`Failed to load config from ${configPath}:`, (err as Error).message);
+      process.exit(1);
+    }
+  }
+  startServer({ port, config });
 }
